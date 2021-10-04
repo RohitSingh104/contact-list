@@ -6,7 +6,7 @@ const List = () => {
     fetch("https://reqres.in/api/users")
       .then((res) => res.json())
       .then((result) => setData(result.data));
-  };
+  }
   useEffect(() => {
     getUserData();
   }, []);
@@ -18,7 +18,7 @@ const List = () => {
             return (
                 <div className="map">
                     <div className="avatar">
-                        <img src={currVal.avatar} alt="image not found" id="profile"/>
+                        <img src={currVal.avatar}  alt="" id="profile" />
                     </div>
                     <div className="otherDetail">
                         <h2 key={index}>

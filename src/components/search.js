@@ -1,7 +1,7 @@
 import React from 'react'
 import { useState } from 'react';
 const Search = (props) => {
-    const [value,setValue] = useState();
+    const [value,setValue] = useState("");
     const takeValue = (e) =>{
         let searchKeyword=e.target.value;
         searchKeyword=searchKeyword.toLowerCase();
@@ -9,11 +9,13 @@ const Search = (props) => {
     }
     
     const searchItem = () => {
-       const result= props.val.filter((currval,ind)=>{
+    
+        const result= props.val.filter((currval,ind)=>{
+        
             return currval.first_name.toLowerCase()===value;
         })
         props.setdata(result);
-        
+    
     }
     return (
         <div className="search">

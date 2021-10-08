@@ -2,19 +2,30 @@ import React from 'react'
 import { useState } from 'react';
 const Search = (props) => {
     const [value,setValue] = useState("");
+   
     const takeValue = (e) =>{
         let searchKeyword=e.target.value;
         searchKeyword=searchKeyword.toLowerCase();
+        console.log(searchKeyword);
         setValue(searchKeyword);
     }
     
     const searchItem = () => {
-    
-        const result= props.val.filter((currval,ind)=>{
+          
+            if(value===""){
+                props.settempstate(props.val);
+            }else{
+                
+                const result = props.val.filter((currval,ind)=>{
         
-            return currval.first_name.toLowerCase()===value;
-        })
-        props.setdata(result);
+                    return currval.first_name.toLowerCase()===value;
+                })
+                props.settempstate(result);
+            }
+           
+        
+    
+       
     
     }
     return (

@@ -1,0 +1,13 @@
+  const getUserData = () => {
+    fetch("https://reqres.in/api/users")
+      .then((res) => res.json())
+      .then((result) => setData(result.data));
+   
+   
+  }
+
+  useEffect(() => {
+    getUserData();
+    setTempState(data);
+    console.log("hello from useEffect");
+  },[data]);

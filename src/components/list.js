@@ -2,21 +2,29 @@ import { useEffect, useState } from "react";
 import Search from './search';
 const List = () => {
   const [data, setData] = useState([]);
-  const getUserData = () => {
+  const [tempState,setTempState] = useState([]);
+
+  useEffect(()=>{
     fetch("https://reqres.in/api/users")
-      .then((res) => res.json())
-      .then((result) => setData(result.data));
-  }
-  useEffect(() => {
-    getUserData();
-  }, []);
+      .then(res => res.json())
+      .then(apiData => {
+        console.log(apiData , "console of apidata during fetch");
+        setData(apiData.data);
+      })
+    setTempState(data);
+    console.log(data , "console of data");
+    console.log("hello from useeffect");
+
+    console.log(tempState, "console of tempstate");
+    
+  },[])
   return (
     <div className="wrapper">
-        <Search val={data} setdata={setData}/>
+        <Search val={data} setdata={setData} settempstate={setTempState} tempstate={tempState}/>
         <div className="inner-wrapper">
-            {data.map((currVal, index) => {
+            {tempState.map((currVal, index) => {
             return (
-                <div className="map">
+                <div className="map" key={index}>
                     <div className="avatar">
                         <img src={currVal.avatar}  alt="" id="profile" />
                     </div>
@@ -35,3 +43,30 @@ const List = () => {
 };
 
 export default List;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
